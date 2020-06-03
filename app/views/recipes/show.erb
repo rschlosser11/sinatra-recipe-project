@@ -1,1 +1,10 @@
 <h1><%= @recipe.name %></h1>
+<h3>By <%= @recipe.user.username %></h3>
+<% RecipesIngredient.where(recipe_id: @recipe.id).each do |ingredient| %>
+  <p>
+    <%= "#{ingredient.amount} #{ingredient.unit_of_measure} #{ingredient.ingredient.name}" %>
+    </p>
+<% end %>
+<p>
+  <%= @recipe.directions %>
+</p>
