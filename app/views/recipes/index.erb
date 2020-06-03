@@ -1,1 +1,5 @@
 <h1>Recipes</h1>
+
+<% Recipe.all.each do |recipe|%>
+  <h3 class='recipe_name'><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a> <span class='recipe_by'>by <%= recipe.user.username %></span></h3>
+<% end %>
