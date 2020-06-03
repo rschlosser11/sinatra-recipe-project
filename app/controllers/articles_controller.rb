@@ -13,6 +13,13 @@ class ArticlesController < ApplicationController
     erb :'articles/show'
   end
 
+  delete "/articles/:id" do
+    @article = Article.find(params[:id])
+    @article.delete
+    
+    redirect '/articles'
+  end
+
   get "/articles/:id/edit" do
     @article = Article.find(params[:id])
 
