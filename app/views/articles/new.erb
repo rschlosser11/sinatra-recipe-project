@@ -1,1 +1,11 @@
 <h1>Write a New Article</h1>
+
+<form method="post" action="/articles">
+    <p>
+      <label class="form-label" for="title">Title:</label><br /><input id="title" type="text" name="title" />
+    </p>
+    <p>
+      <label class="form-label" for="content">Body:</label><br /><input id="content" type="textarea" name="content" style="height: 500px; width: 100%"/> <br />
+    </p>
+    <input class="button" type="submit" value="Publish" />
+</form>
