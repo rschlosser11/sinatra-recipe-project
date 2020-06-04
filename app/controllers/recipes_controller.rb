@@ -10,15 +10,17 @@ class RecipesController < ApplicationController
   post "/recipes" do
     @recipe = Recipe.create_with_optional_params(params[:recipe])
     @recipe.user = User.find(session[:user_id])
-    ingredients = params[:ingredients].split(/(,|\r\n)/)
+    ingredients = params[:ingredients].split(/(,|\r\n)/).delete_if {|string| string == "\r\n" || string == ","}
     ingredients.each do |ingredient|
       split_ingredient = ingredient.split(' of ')
       ingredient_name = split_ingredient.last.chomp.downcase
       recipe_ingredient = Ingredient.find_by(name: ingredient_name)
+      ingredient_amount = split_ingredient.first.chomp
       if recipe_ingredient
-        recipe_ingredient
+        RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: recipe_ingredient)
       else
-        Ingredient.create(name: ingredient_name)
+        new_ingredient = Ingredient.create(name: ingredient_name)
+        RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: new_ingredient)
       end
       binding.pry
     end
