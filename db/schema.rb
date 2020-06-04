@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2020_06_02_145827) do
     t.integer "recipe_id"
     t.integer "ingredient_id"
     t.string "amount"
-    t.string "unit_of_measure"
   end
 
   create_table "users", force: :cascade do |t|
