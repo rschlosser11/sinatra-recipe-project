@@ -7,6 +7,13 @@ class RecipesController < ApplicationController
     erb :'recipes/new'
   end
 
+  post "/recipes/new" do
+    @recipe = Recipe.create_with_optional_params(params[:recipe])
+    
+
+    redirect "/recipes/#{@recipe.id}"
+  end
+
   get "/recipes/:id" do
     @recipe = Recipe.find(params[:id])
 
