@@ -7,9 +7,21 @@ class RecipesController < ApplicationController
     erb :'recipes/new'
   end
 
-  post "/recipes/new" do
+  post "/recipes" do
     @recipe = Recipe.create_with_optional_params(params[:recipe])
-    
+    @recipe.user = User.find(session[:user_id])
+    ingredients = params[:ingredients].split(/(,|\r\n)/)
+    ingredients.each do |ingredient|
+      split_ingredient = ingredient.split(' of ')
+      ingredient_name = split_ingredient.last.chomp.downcase
+      recipe_ingredient = Ingredient.find_by(name: ingredient_name)
+      if recipe_ingredient
+        recipe_ingredient
+      else
+        Ingredient.create(name: ingredient_name)
+      end
+      binding.pry
+    end
 
     redirect "/recipes/#{@recipe.id}"
   end

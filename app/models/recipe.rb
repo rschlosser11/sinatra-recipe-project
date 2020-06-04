@@ -4,9 +4,10 @@ class Recipe < ActiveRecord::Base
   belongs_to :user
   belongs_to :article
 
-  def create_with_optional_params(params)
+  def self.create_with_optional_params(params)
     recipe = Recipe.new
     params.each{|k, v| recipe.send("#{k}=", v)}
     recipe.save
+    recipe
   end
 end
