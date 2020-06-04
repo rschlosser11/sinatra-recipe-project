@@ -22,9 +22,7 @@ class RecipesController < ApplicationController
         new_ingredient = Ingredient.create(name: ingredient_name)
         RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: new_ingredient)
       end
-      binding.pry
     end
-
     redirect "/recipes/#{@recipe.id}"
   end
 
