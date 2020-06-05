@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
 
   post "/recipes" do
     @recipe = Recipe.create_with_optional_params(params[:recipe])
-    @recipe.update(user: User.find(session[:user_id]))
+    @recipe.update(user: User.find(session[:user_id]), directions: params[:directions])
     ingredients = params[:ingredients].split(/(,|\r\n)/).delete_if {|string| string == "\r\n" || string == ","}
     ingredients.each do |ingredient|
       split_ingredient = ingredient.split(' of ')
@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
         RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: new_ingredient)
       end
     end
+    binding.pry
     redirect "/recipes/#{@recipe.id}"
   end
 
