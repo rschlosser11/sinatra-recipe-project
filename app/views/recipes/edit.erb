@@ -6,15 +6,38 @@
     <label for="recipe[prep_time]">Prep Time: </label> <input id="recipe[prep_time]" type="string" name="recipe[prep_time]" value="<%= @recipe.prep_time if @recipe.prep_time %>">  <label for="recipe[cook_time]">Cook Time: </label> <input id="recipe[cook_time]" type="string" name="recipe[cook_time]" value="<%= @recipe.cook_time if @recipe.cook_time %>">  <label for="recipe[servings]">Servings: </label> <input id="recipe[servings]" type="string" name="recipe[servings]" value="<%= @recipe.servings if @recipe.servings %>">
   </p>
   <p>
-    <label for="meal_type">Meal Type: </label> <select id="meal_type" type="string" name="recipe[meal_type]" value="<%= @recipe.meal_type if @recipe.meal_type %>">
-        <option value="" <%= 'selected' if @recipe.meal_type %>></option>
-        <option value="Breakfast" <%= 'selected' if @recipe.meal_type %>>Breakfast</option>
-        <option value="Lunch" <%= 'selected' if @recipe.meal_type %>>Lunch</option>
-        <option value="Dinner" <%= 'selected' if @recipe.meal_type %>>Dinner</option>
-        <option value="Dessert" <%= 'selected' if @recipe.meal_type %>>Dessert</option>
-        <option value="Drinks" <%= 'selected' if @recipe.meal_type %>>Drink</option>
-        <option value="Snack" <%= 'selected' if @recipe.meal_type %>>Snack</option>
-      </select>  <label for="dish_type">Dish Type: </label> <input id="dish_type" type="string" name="recipe[dish_type]" value="<%= @recipe.dish_type if @recipe.dish_type %>">  <label for="cuisine_type">Cuisine Type: </label> <input id="cuisine_type" type="string" name="recipe[cuisine_type]" value="<%= @recipe.cuisine_type if @recipe.cuisine_type %>">
+    <label for="meal_type">Meal Type: </label> <select id="meal_type" type="string" name="recipe[meal_type]">
+      <option value="" <%= 'selected' if @recipe.meal_type == "" %>></option>
+      <option value="Breakfast Brunch" <%= 'selected' if @recipe.meal_type == "Breakfast Brunch" %>>Breakfast/Brunch</option>
+      <option value="Lunch" <%= 'selected' if @recipe.meal_type == "Lunch" %>>Lunch</option>
+      <option value="Dinner" <%= 'selected' if @recipe.meal_type == "Dinner" %>>Dinner</option>
+      <option value="Dessert" <%= 'selected' if @recipe.meal_type == "Dessert" %>>Dessert</option>
+      <option value="Drinks" <%= 'selected' if @recipe.meal_type == "Drinks" %>>Drink</option>
+      <option value="Appetizer Snack" <%= 'selected' if @recipe.meal_type == "Appetizer Snack" %>>Appetizer/Snack</option>
+    </select>  <label for="dish_type">Dish Type: </label> <select id="dish_type" type="string" name="recipe[dish_type]">
+        <option value="" <%= 'selected' if @recipe.dish_type == "" %>></option>
+        <option value="Bread" <%= 'selected' if @recipe.dish_type == "Bread" %>>Bread</option>
+        <option value="Cake" <%= 'selected' if @recipe.dish_type == "Cake" %>>Cake</option>
+        <option value="Salad" <%= 'selected' if @recipe.dish_type == "Salad" %>>Salad</option>
+        <option value="Soup Stew Chili" <%= 'selected' if @recipe.dish_type == "Soup Stew Chili" %>>Soup/Stew/Chili</option>
+        <option value="Cookie" <%= 'selected' if @recipe.dish_type == "Cookie" %>>Cookie</option>
+        <option value="Bar" <%= 'selected' if @recipe.dish_type == "Bar" %>>Bar</option>
+        <option value="Sandwich" <%= 'selected' if @recipe.dish_type == "Sandwich" %>>Sandwich</option>
+        <option value="Pasta" <%= 'selected' if @recipe.dish_type == "Pasta" %>>Pasta</option>
+        <option value="Pie" <%= 'selected' if @recipe.dish_type == "Pie" %>>Pie</option>
+      </select>  <label for="cuisine_type">Cuisine Type: </label> <select id="cuisine_type" type="string" name="recipe[cuisine_type]">
+        <option value="" <%= 'selected' if @recipe.cuisine_type == "" %>></option>
+        <option value="Mexican" <%= 'selected' if @recipe.cuisine_type == "Mexican" %>>Mexican</option>
+        <option value="Italian" <%= 'selected' if @recipe.cuisine_type == "Italian" %>>Italian</option>
+        <option value="Chinese" <%= 'selected' if @recipe.cuisine_type == "Chinese" %>>Chinese</option>
+        <option value="Japanese" <%= 'selected' if @recipe.cuisine_type == "Japanese" %>>Japanese</option>
+        <option value="Indian" <%= 'selected' if @recipe.cuisine_type == "Indian" %>>Indian</option>
+        <option value="French" <%= 'selected' if @recipe.cuisine_type == "French" %>>French</option>
+        <option value="Thai" <%= 'selected' if @recipe.cuisine_type == "Thai" %>>Thai</option>
+        <option value="Nordic" <%= 'selected' if @recipe.cuisine_type == "Nordic" %>>Nordic</option>
+        <option value="English" <%= 'selected' if @recipe.cuisine_type == "English" %>>English</option>
+        <option value="German" <%= 'selected' if @recipe.cuisine_type == "German" %>>German</option>
+      </select>
   </p>
   <p>
     <label class="form-label" for="name">Name:</label>  <input id="name" type="text" name="recipe[name]" value="<%= @recipe.name %>">
