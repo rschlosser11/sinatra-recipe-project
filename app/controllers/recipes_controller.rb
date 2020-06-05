@@ -49,18 +49,14 @@ class RecipesController < ApplicationController
   patch "/recipes/:id" do
     @recipe = Recipe.find(params[:id])
     ingredients = params[:ingredients].split(/(,|\r\n)/).delete_if {|string| string == "\r\n" || string == ","}
+    RecipesIngredient.all.where(recipe_id: @recipe.id).map{|ingredient| ingredient.delete}
     ingredients.each do |ingredient|
       split_ingredient = ingredient.split(' of ')
       ingredient_name = split_ingredient.last.chomp.downcase
       recipe_ingredient = Ingredient.find_by(name: ingredient_name)
       ingredient_amount = split_ingredient.first.chomp
       if recipe_ingredient
-        recipe_ingredient = RecipesIngredient.find_by(recipe: @recipe, ingredient: recipe_ingredient)
-        if recipe_ingredient
-          recipe_ingredient
-        else
-          RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient:recipe_ingredient)
-        end
+        RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient:recipe_ingredient)
       else
         new_ingredient = Ingredient.create(name: ingredient_name)
         RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: new_ingredient)
