@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
     user = User.create(params)
     session[:user_id] = user.id
     if user.id
-      redirect '/recipes'
+      redirect '/login'
     else
       redirect '/signup'
     end
@@ -36,7 +36,7 @@ class ApplicationController < Sinatra::Base
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/recipes'
+      redirect '/welcome'
     else
       redirect '/login'
     end
@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
 
   get "/welcome" do
     @user = User.find(session[:user_id])
-    
+
     erb :welcome
   end
 
