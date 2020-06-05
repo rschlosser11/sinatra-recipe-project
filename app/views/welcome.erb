@@ -6,14 +6,24 @@
     <div class="content">
       <h3>Your Articles</h3>
       <% Article.all.where(user_id: session[:user_id]).each do |article| %>
-      <p><a href="/articles/<%= article.id %>"><%= article.title %></a></p>
+      <a href="/articles/<%= article.id %>"><%= article.title %></a><form style="display: inline" method="get" action="/articles/<%= @article.id %>/edit">
+        <input type="submit" value="Edit" />
+      </form><form style="display: inline" method="post" action="/articles/<%= @article.id %>">
+        <input id="hidden" type="hidden" name="_method" value="delete" />
+        <input type="submit" value="Delete" />
+      </form>
       <% end %>
     </div>
 
     <div class="content">
       <h3>Your Recipes</h3>
       <% Recipe.all.where(user_id: session[:user_id]).each do |recipe| %>
-      <p><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></p>
+      <a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a><form style="display: inline" method="get" action="/recipes/<%= recipe.id %>/edit">
+        <input type="submit" value="Edit" />
+      </form><form style="display: inline" method="post" action="/recipes/<%= recipe.id %>">
+        <input id="hidden" type="hidden" name="_method" value="delete" />
+        <input type="submit" value="Delete" />
+      </form>
       <% end %>
     </div>
 

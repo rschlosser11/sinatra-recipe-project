@@ -3,12 +3,3 @@
 <p>
   <%= @article.content %>
 </p>
-
-<form method="post" action="/articles/<%= @article.id %>">
-  <input id="hidden" type="hidden" name="_method" value="delete" />
-  <input type="submit" value="Delete Article" />
-</form>
-
-<form method="get" action="/articles/<%= @article.id %>/edit">
-  <input type="submit" value="Edit Article" />
-</form>
