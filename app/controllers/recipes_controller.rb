@@ -67,6 +67,7 @@ class RecipesController < ApplicationController
       end
     end
     @recipe.update(params[:recipe])
+    @recipe.update(directions: params[:directions])
     redirect "/recipes/#{@recipe.id}"
   end
 end
