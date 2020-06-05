@@ -1,1 +1,27 @@
 <h1>Make Chages to <%= @recipe.name %></h1>
+
+<form method="post" action="/recipes">
+  <p>
+    <label for="recipe[prep_time]">Prep Time: </label> <input id="recipe[prep_time]" type="string" name="recipe[prep_time]" value="<%= @recipe.prep_time if @recipe.prep_time %>">  <label for="recipe[cook_time]">Cook Time: </label> <input id="recipe[cook_time]" type="string" name="recipe[cook_time]" value="<%= @recipe.cook_time if @recipe.cook_time %>">  <label for="recipe[servings]">Servings: </label> <input id="recipe[servings]" type="string" name="recipe[servings]" value="<%= @recipe.servings if @recipe.servings %>">
+  </p>
+  <p>
+    <label for="meal_type">Meal Type: </label> <input id="meal_type" type="string" name="recipe[meal_type]" value="<%= @recipe.meal_type if @recipe.meal_type %>">  <label for="dish_type">Dish Type: </label> <input id="dish_type" type="string" name="recipe[dish_type]" value="<%= @recipe.dish_type if @recipe.dish_type %>">  <label for="cuisine_type">Cuisine Type: </label> <input id="cuisine_type" type="string" name="recipe[cuisine_type]" value="<%= @recipe.cuisine_type if @recipe.cuisine_type %>">
+  </p>
+  <p>
+    <label class="form-label" for="name">Name:</label>  <input id="name" type="text" name="recipe[name]" value="<%= @recipe.name %>">
+  </p>
+  <p>
+    <label for="ingredients">Ingredients</label><br />
+    * Please write the ingredients in the form '[amount] of [ingredient]' and seperated by a comma or new line
+    <textarea id="ingredients" name="ingredients" style="height: 150px; width: 100%; padding: 5px"><% @recipe.ingredients.each do |ingredient| %>
+<%= "#{ingredient.recipes_ingredients.first.amount} #{ingredient.name}" %><% end %>
+    </textarea>
+    </p>
+  <p>
+
+  </p>
+  <p>
+    <label class="form-label" for="directions">Directions:</label><br /><textarea id="content" name="directions" style="height: 300px; width: 100%; padding: 5px"><%= @recipe.directions %>"</textarea><br />
+  </p>
+  <input class="button" type="submit" value="Update" />
+</form>
