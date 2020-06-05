@@ -42,4 +42,10 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get "/welcome" do
+    @user = User.find(session[:user_id])
+    
+    erb :welcome
+  end
+
 end
