@@ -1,6 +1,6 @@
 <h1>Make Chages to <%= @recipe.name %></h1>
 
-<form method="post" action="/recipes">
+<form method="post" action='/recipes/<%= "#{@recipe.id}" %>'>
   <input id="hidden" type="hidden" name="_method" value="patch" />
   <p>
     <label for="recipe[prep_time]">Prep Time: </label> <input id="recipe[prep_time]" type="string" name="recipe[prep_time]" value="<%= @recipe.prep_time if @recipe.prep_time %>">  <label for="recipe[cook_time]">Cook Time: </label> <input id="recipe[cook_time]" type="string" name="recipe[cook_time]" value="<%= @recipe.cook_time if @recipe.cook_time %>">  <label for="recipe[servings]">Servings: </label> <input id="recipe[servings]" type="string" name="recipe[servings]" value="<%= @recipe.servings if @recipe.servings %>">
