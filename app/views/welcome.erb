@@ -6,9 +6,9 @@
     <div class="content">
       <h3>Your Articles</h3>
       <% Article.all.where(user_id: session[:user_id]).each do |article| %>
-      <a href="/articles/<%= article.id %>"><%= article.title %></a><form style="display: inline" method="get" action="/articles/<%= @article.id %>/edit">
+      <a href="/articles/<%= "#{article.id}" %>"><%= article.title %></a><form style="display: inline" method="get" action="/articles/<%= article.id %>/edit">
         <input type="submit" value="Edit" />
-      </form><form style="display: inline" method="post" action="/articles/<%= @article.id %>">
+      </form><form style="display: inline" method="post" action="/articles/<%= article.id %>">
         <input id="hidden" type="hidden" name="_method" value="delete" />
         <input type="submit" value="Delete" />
       </form>

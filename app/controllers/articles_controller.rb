@@ -28,11 +28,18 @@ class ArticlesController < ApplicationController
       redirect '/articles'
     else
       erb :'/articles/:id'
+    end
   end
 # SHOW edit form for individual article
   get "/articles/:id/edit" do
     @article = Article.find(params[:id])
 
     erb :'articles/edit'
+  end
+
+  patch "/articles/:id" do
+    @article = Article.find(params[:id])
+    @article.update(params[:article])
+    redirect "/articles/#{@article.id}"
   end
 end
