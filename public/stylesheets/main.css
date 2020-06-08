@@ -68,7 +68,7 @@
   }
 
   .sidebar {
-    background: #eee;
+    background: rgb(238, 238, 238, 0.7);
     border: 1px solid #ccc;
     float: right;
     padding: 2.08333333333%; /* 5px / 240px */

@@ -1,8 +1,12 @@
 <div class="container">
-  <header><img src="images/corneal-small.png" class="img-responsive main-image"></header>
   <div class="col-md-8 col-md-offset-2">
     <h2>Welcome, <%= @user.username %>!</h2>
-
+    <div class="sidebar">
+      <ul>
+        <li><a href='/recipes/new'>Share a New Recipe</a></li>
+        <li><a href='/articles/new'>Write a New Article</a></li>
+      </ul>
+    </div>
     <div class="content">
       <h3>Your Articles</h3>
       <% Article.all.where(user_id: session[:user_id]).each do |article| %>
@@ -27,12 +31,7 @@
       <% end %>
     </div>
 
-    <div class="sidebar">
-      <ul>
-        <li><a href='/recipes/new'>Share a New Recipe</a></li>
-        <li><a href='/articles/new'>Write a New Article</a></li>
-      </ul>
-    </div>
+
 
   </div>
 </div>
