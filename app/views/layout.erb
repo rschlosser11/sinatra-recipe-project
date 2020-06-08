@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <header>
-    <h3 style="float: left">Let's Get Cooking!</h3>
+    <h3 style="float: left; color: palegoldenrod">Let's Get Cooking!</h3>
     <% if session[:user_id] %>
     <div class="dropdown">
-      <span><strong>Welcome, <%= User.find(session[:user_id]).username %></strong>!</span>
+      <span style="color: palegoldenrod"><strong>Welcome, <%= User.find(session[:user_id]).username %></strong>!</span>
       <div class="dropdown-content">
         <p><a href="/articles">Articles</a></p>
         <p><a href="/recipes">Recipes</a></p>

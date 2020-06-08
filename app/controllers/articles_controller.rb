@@ -19,9 +19,9 @@ class ArticlesController < ApplicationController
   end
 # CREATE new article
   post "/articles" do
-    @article = Article.create(params)
+    @article = Article.new(params)
     @article.user = User.find(session[:user_id])
-
+    @article.save
     redirect "/articles/#{@article.id}"
   end
 # SHOW individual article
