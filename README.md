@@ -20,6 +20,8 @@ Then open up your local server in your favorite browser.
 
 ## Contributor's Guide
 
-Bug reports and pull requests are welcome.
+Bug reports and pull requests are welcome on GitHub.
 
 ## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
