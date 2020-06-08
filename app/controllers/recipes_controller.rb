@@ -35,9 +35,14 @@ class RecipesController < ApplicationController
 
   delete "/recipes/:id" do
     @recipe = Recipe.find(params[:id])
-    @recipe.delete
+    if session[:user_id] == @recipe.user.id
+      @recipe.delete
 
-    redirect '/recipes'
+      redirect '/recipes'
+    else
+      @error = "You can only delete a recipe that you've written!"
+
+      erb :"/recipes/show"
   end
 
   get "/recipes/:id/edit" do
