@@ -1,10 +1,20 @@
 class RecipesController < ApplicationController
   get "/recipes" do
-    erb :'recipes/index'
+    if session[:user_id]
+      erb :'recipes/index'
+    else
+      @error = "You must be logged in to view recipes!"
+      erb :homepage
+    end
   end
 
   get "/recipes/new" do
-    erb :'recipes/new'
+    if session[:user_id]
+      erb :'recipes/new'
+    else
+      @error = "You must be logged in to create a new recipe!"
+      erb :homepage
+    end
   end
 
   post "/recipes" do
@@ -23,14 +33,18 @@ class RecipesController < ApplicationController
         RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: new_ingredient)
       end
     end
-    binding.pry
     redirect "/recipes/#{@recipe.id}"
   end
 
   get "/recipes/:id" do
-    @recipe = Recipe.find(params[:id])
+    if session[:user_id]
+      @recipe = Recipe.find(params[:id])
 
-    erb :'recipes/show'
+      erb :'recipes/show'
+    else
+      @error = "You must be logged in to view this recipe!"
+      erb :homepage
+    end
   end
 
   delete "/recipes/:id" do
