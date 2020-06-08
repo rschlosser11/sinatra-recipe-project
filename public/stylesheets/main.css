@@ -12,6 +12,13 @@
   }
 
   /* --- Welcome Page Styles --- */
+  header {
+    margin: 16px auto;
+    max-width: 960px;
+    padding: 2.25%; /* 18px / 800px */
+    width: 85%;
+  }
+
   body {
     background-color: lightblue;
     color: #333;

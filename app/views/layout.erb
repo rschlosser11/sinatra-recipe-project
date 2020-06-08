@@ -9,6 +9,16 @@
 
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
+  <header>
+    <h3 style="float: left">Let's Get Cooking!</h3>
+    <% if session[:user_id] %>
+      <p style="float: right; padding-top: 10px;">
+        <a href="/articles">Articles</a>
+        <a href="/recipes">Recipes</a>
+        <a href="/welcome">Profile</a>
+      </p>
+    <% end %>
+    </header>
   <body>
     <div class="wrapper">
 

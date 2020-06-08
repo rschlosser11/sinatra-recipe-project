@@ -1,9 +1,9 @@
 <% if @error %>
   <p class="error"><%= @error %></p>
 <% end %>
+
 <h1><%= @recipe.name %></h1>
-<h3>By <%= @recipe.user.username %></h3>
-<div style="display: inline-block; float: right; margin-right: 20px;">
+<div class="sidebar" >
   <p>
     Prep. Time: <%= @recipe.prep_time %><br />
     Cook Time: <%= @recipe.cook_time %><br />
@@ -12,6 +12,8 @@
     Dish Type: <%= @recipe.dish_type %><br />
     </p>
   </div>
+<h3>By <%= @recipe.user.username %></h3>
+
 <div style="display: inline-block; margin-bottom: 20px; margin-top: 20px;">
 <% RecipesIngredient.where(recipe_id: @recipe.id).each do |ingredient| %>
     <%= "#{ingredient.amount} #{ingredient.ingredient.name}" %><br />
