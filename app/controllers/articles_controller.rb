@@ -1,7 +1,12 @@
 class ArticlesController < ApplicationController
 # SHOW all articles
   get "/articles" do
-    erb :'articles/index'
+    if session[:user_id]
+      erb :'articles/index'
+    else
+      @error = "You can only see articles if you're logged in!"
+      erb :homepage
+    end
   end
 # SHOW form to create new article
   get "/articles/new" do
