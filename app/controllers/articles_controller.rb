@@ -23,11 +23,13 @@ class ArticlesController < ApplicationController
 # DELETE individual article
   delete "/articles/:id" do
     @article = Article.find(params[:id])
-    @article.delete
-
-    redirect '/articles'
+    if session[:user_id] == @article.user.id
+      @article.delete
+      redirect '/articles'
+    else
+      erb :'/articles/:id'
   end
-# SHOW edit form for individual article 
+# SHOW edit form for individual article
   get "/articles/:id/edit" do
     @article = Article.find(params[:id])
 
