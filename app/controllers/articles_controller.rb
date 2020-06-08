@@ -26,9 +26,14 @@ class ArticlesController < ApplicationController
   end
 # SHOW individual article
   get "/articles/:id" do
-    @article = Article.find(params[:id])
+    if session[:user_id]
+      @article = Article.find(params[:id])
 
-    erb :'articles/show'
+      erb :'articles/show'
+    else
+      @error = "You must be logged in to see this article!"
+      erb :homepage
+    end
   end
 # DELETE individual article
   delete "/articles/:id" do
