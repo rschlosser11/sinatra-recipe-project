@@ -12,12 +12,15 @@
   <header>
     <h3 style="float: left">Let's Get Cooking!</h3>
     <% if session[:user_id] %>
-      <p style="float: right; padding-top: 10px;">
-        <a href="/articles">Articles</a>
-        <a href="/recipes">Recipes</a>
-        <a href="/welcome">Profile</a>
-        <a href="/logout">Logout</a>
-      </p>
+    <div class="dropdown">
+      <span><strong>Welcome, <%= User.find(session[:user_id]).username %></strong>!</span>
+      <div class="dropdown-content">
+        <p><a href="/articles">Articles</a></p>
+        <p><a href="/recipes">Recipes</a></p>
+        <p><a href="/welcome">Profile</a></p>
+        <p><a href="/logout">Logout</a></p>
+        </div>
+      </div>
     <% end %>
     </header>
   <body>
