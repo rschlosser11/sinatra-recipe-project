@@ -43,6 +43,7 @@ class RecipesController < ApplicationController
       @error = "You can only delete a recipe that you've written!"
 
       erb :"/recipes/show"
+    end
   end
 
   get "/recipes/:id/edit" do

@@ -20,7 +20,7 @@
   }
 
   .wrapper {
-    background: #fff;
+    background: #fafafa;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -80,6 +80,11 @@
     border-top: 2px solid #ccc;
     margin-top: 20px;
     padding-top: 20px;
+  }
+
+  p.error {
+    color: red;
+    font-weight: bolder;
   }
 }
 
