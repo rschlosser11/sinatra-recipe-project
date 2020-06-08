@@ -22,7 +22,11 @@
     </header>
   <body>
     <div class="wrapper">
-
+      <% if @error %>
+        <p class="error">
+          <%= @error %>
+          </p>
+      <% end %>
         <%= yield %>
 
       <footer class="branding">

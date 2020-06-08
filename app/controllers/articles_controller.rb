@@ -5,7 +5,12 @@ class ArticlesController < ApplicationController
   end
 # SHOW form to create new article
   get "/articles/new" do
-    erb :'articles/new'
+    if session[:user_id]
+      erb :'articles/new'
+    else
+      @error = "You can only write new articles if you're logged in!"
+      erb :homepage
+    end
   end
 # CREATE new article
   post "/articles" do
@@ -36,7 +41,7 @@ class ArticlesController < ApplicationController
     if session[:user_id] == @article.user.id
       erb :'articles/edit'
     else
-      @error = "You can only edit articles you've written!"
+      @error = "You can only edit articles you wrote!"
       erb :"/articles/show"
     end
   end
