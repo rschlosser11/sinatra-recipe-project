@@ -33,13 +33,21 @@ class ArticlesController < ApplicationController
 # SHOW edit form for individual article
   get "/articles/:id/edit" do
     @article = Article.find(params[:id])
-
-    erb :'articles/edit'
+    if session[:user_id] == @article.user.id
+      erb :'articles/edit'
+    else
+      @error = "You can only edit articles you've written!"
+      erb :"/articles/show"
+    end
   end
 
   patch "/articles/:id" do
     @article = Article.find(params[:id])
-    @article.update(params[:article])
-    redirect "/articles/#{@article.id}"
+    if session[:user_id] == @article.user.id
+      @article.update(params[:article])
+      redirect "/articles/#{@article.id}"
+    else
+      redirect "/articles/#{@article.id}"
+    end
   end
 end
