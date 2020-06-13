@@ -20,19 +20,7 @@ class RecipesController < ApplicationController
   post "/recipes" do
     @recipe = Recipe.create(params[:recipe])
     @recipe.update(user: User.find(session[:user_id]), directions: params[:directions])
-    ingredients = params[:ingredients].split(/(,|\r\n)/).delete_if {|string| string == "\r\n" || string == ","}
-    ingredients.each do |ingredient|
-      split_ingredient = ingredient.split(' of ')
-      ingredient_name = split_ingredient.last.chomp.downcase
-      recipe_ingredient = Ingredient.find_by(name: ingredient_name)
-      ingredient_amount = split_ingredient.first.chomp
-      if recipe_ingredient
-        RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: recipe_ingredient)
-      else
-        new_ingredient = Ingredient.create(name: ingredient_name)
-        RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: new_ingredient)
-      end
-    end
+    Ingredient.create_from_list(params[:ingredients], @recipe)
     redirect "/recipes/#{@recipe.id}"
   end
 
@@ -76,18 +64,7 @@ class RecipesController < ApplicationController
     if session[:user_id] == @recipe.user.id
       ingredients = params[:ingredients].split(/(,|\r\n)/).delete_if {|string| string == "\r\n" || string == ","}
       RecipesIngredient.all.where(recipe_id: @recipe.id).map{|ingredient| ingredient.delete}
-      ingredients.each do |ingredient|
-        split_ingredient = ingredient.split(' of ')
-        ingredient_name = split_ingredient.last.chomp.downcase
-        recipe_ingredient = Ingredient.find_by(name: ingredient_name)
-        ingredient_amount = split_ingredient.first.chomp
-        if recipe_ingredient
-          RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient:recipe_ingredient)
-        else
-          new_ingredient = Ingredient.create(name: ingredient_name)
-          RecipesIngredient.create(amount: ingredient_amount, recipe: @recipe, ingredient: new_ingredient)
-        end
-      end
+      Ingredient.create_from_list(params[:ingredients], @recipe)
       @recipe.update(params[:recipe])
       @recipe.update(directions: params[:directions])
       redirect "/recipes/#{@recipe.id}"
