@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
   end
 
   post "/recipes" do
-    @recipe = Recipe.create_with_optional_params(params[:recipe])
+    @recipe = Recipe.create(params[:recipe])
     @recipe.update(user: User.find(session[:user_id]), directions: params[:directions])
     ingredients = params[:ingredients].split(/(,|\r\n)/).delete_if {|string| string == "\r\n" || string == ","}
     ingredients.each do |ingredient|
