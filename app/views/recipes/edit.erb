@@ -45,8 +45,8 @@
   <p>
     <label for="ingredients">Ingredients</label><br />
     * Please write the ingredients in the form '[amount] of [ingredient]' and seperated by a comma or new line
-    <textarea id="ingredients" name="ingredients" style="height: 150px; width: 100%; padding: 5px"><% @recipe.ingredients.each do |ingredient| %>
-<%= "#{ingredient.recipes_ingredients.first.amount} of #{ingredient.name}" %><% end %>
+    <textarea id="ingredients" name="ingredients" style="height: 150px; width: 100%; padding: 5px"><% RecipesIngredient.where(recipe_id: @recipe.id).each do |ingredient| %>
+<%= "#{ingredient.amount} of #{ingredient.ingredient.name}" %><% end %>
     </textarea>
     </p>
   <p>
